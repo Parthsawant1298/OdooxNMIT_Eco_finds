@@ -22,16 +22,23 @@ export async function GET(request, { params }) {
             rawMaterialId,
             isActive: true
         })
-        .populate('userId', 'name vendorName')
+        .populate('userId', 'name vendorName profilePicture')
         .sort({ createdAt: -1 })
         .lean();
 
         console.log('📊 Found reviews:', reviews.length);
         console.log('📊 Sample review:', reviews[0]);
 
+        // Format reviews with consistent user data
+        const formattedReviews = reviews.map(review => ({
+            ...review,
+            userName: review.userName || review.userId?.name || review.userId?.vendorName || 'Anonymous User',
+            userProfilePicture: review.userId?.profilePicture || null
+        }));
+
         return NextResponse.json({
             success: true,
-            reviews
+            reviews: formattedReviews
         });
 
     } catch (error) {
@@ -173,11 +180,11 @@ export async function POST(request, { params }) {
         console.log('💾 Creating new review...');
         const review = await Review.create({
             userId,
-            userName: user.name || user.vendorName,
+            userName: user.name || user.vendorName || 'Anonymous User',
             rawMaterialId,
             rawMaterialName: rawMaterial.name,
             sellerId: rawMaterial.createdBy._id,
-            sellerName: rawMaterial.createdBy.name || rawMaterial.createdBy.vendorName,
+            sellerName: rawMaterial.createdBy.name || rawMaterial.createdBy.vendorName || rawMaterial.createdBy.supplierName,
             rating: parseInt(rating),
             title: title || '',
             comment,
@@ -197,12 +204,16 @@ export async function POST(request, { params }) {
         console.log('✅ Raw material ratings updated:', { averageRating, numReviews });
 
         // Populate user details for response
-        await review.populate('userId', 'name vendorName');
+        await review.populate('userId', 'name vendorName profilePicture');
 
         return NextResponse.json({
             success: true,
             message: 'Review added successfully',
-            review
+            review: {
+                ...review.toObject(),
+                userName: review.userName || review.userId?.name || review.userId?.vendorName || 'Anonymous User',
+                userProfilePicture: review.userId?.profilePicture || null
+            }
         }, { status: 201 });
 
     } catch (error) {

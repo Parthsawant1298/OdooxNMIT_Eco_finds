@@ -301,10 +301,10 @@ const ProductCategories = () => {
                 )}
               </div>
             ) : (
-              // Fallback - show cleaning chemicals if no 5th category
+              // Show a placeholder or featured products section when no 5th category exists
               <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4">
                 <div className="flex justify-between items-center mb-3 sm:mb-4">
-                  <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">Cleaning Chemicals</h3>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">Featured Items</h3>
                   <a
                     href="/rawmaterials"
                     className="text-xs sm:text-sm font-medium flex items-center flex-shrink-0 transition-colors"
@@ -321,7 +321,7 @@ const ProductCategories = () => {
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {dealsProducts.slice(0, 4).map((product) => (
                     <div
-                      key={`cleaning-${product._id}`}
+                      key={`featured-${product._id}`}
                       className="cursor-pointer group"
                       onClick={() => navigateToProduct(product._id)}
                     >

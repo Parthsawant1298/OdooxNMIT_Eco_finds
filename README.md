@@ -5,12 +5,12 @@
   
   [![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
-  [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?style=for-the-badge&logo=mongodb)](https://mongodb.com/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb)](https://mongodb.com/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
   
   **Your Go-To Platform for Sustainable Second-Hand Shopping**
   
-  [🚀 Live Demo](https://eco-finds.vercel.app) · [📖 Documentation](#documentation) · [🐛 Report Bug](#issues) · [✨ Request Feature](#contributing)
+  [🚀 Live Demo](https://odoox-nmit-eco-finds.vercel.app/) · [📖 Documentation](#documentation) · [🐛 Report Bug](#issues) · [✨ Request Feature](#contributing)
 </div>
 
 ---
@@ -88,7 +88,7 @@
 ### **Backend**
 - **Runtime**: Node.js
 - **Framework**: Next.js API Routes
-- **Database**: MongoDB Atlas
+- **Database**: MongoDB with cloud hosting
 - **ODM**: Mongoose
 - **Authentication**: Cookie-based sessions
 - **File Upload**: Cloudinary
@@ -115,7 +115,7 @@
 
 - **Node.js** 18.0.0 or higher
 - **npm** or **yarn** package manager
-- **MongoDB Atlas** account
+- **MongoDB** database access
 - **Cloudinary** account
 - **Razorpay** account
 - **Google AI** API key
@@ -141,7 +141,7 @@ cp .env.example .env.local
 4. **Configure environment variables**
 ```env
 # Database
-MONGODB_URI=mongodb+srv://your-connection-string
+MONGODB_URI=your-database-connection-string
 
 # Cloudinary
 CLOUDINARY_CLOUD_NAME=your-cloud-name
@@ -241,10 +241,10 @@ eco-finds/
 
 ### **Database Setup**
 
-1. **Create MongoDB Atlas cluster**
-2. **Add IP to whitelist** (0.0.0.0/0 for development)
+1. **Setup MongoDB database**
+2. **Configure network access** 
 3. **Create database user**
-4. **Copy connection string**
+4. **Get connection string**
 
 ### **Cloudinary Setup**
 
@@ -520,10 +520,10 @@ npm start
 ```bash
 # Production environment variables
 NODE_ENV=production
-NEXT_PUBLIC_APP_URL=https://your-domain.com
+NEXT_PUBLIC_APP_URL=https://odoox-nmit-eco-finds.vercel.app/
 
 # Database (production)
-MONGODB_URI=mongodb+srv://prod-connection-string
+MONGODB_URI=your-production-database-connection
 
 # Services (production keys)
 RAZORPAY_KEY_ID=prod_key
@@ -600,6 +600,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
   
   ⭐ **Star this repo if you found it helpful!**
   
-  [🔗 Live Demo](https://eco-finds.vercel.app) | [🐛 Report Bug](https://github.com/Parthsawant1298/odoo_eco_finds/issues) | [✨ Request Feature](https://github.com/Parthsawant1298/odoo_eco_finds/issues)
+  [🔗 Live Demo](https://odoox-nmit-eco-finds.vercel.app/) | [🐛 Report Bug](https://github.com/Parthsawant1298/odoo_eco_finds/issues) | [✨ Request Feature](https://github.com/Parthsawant1298/odoo_eco_finds/issues)
 
 </div>

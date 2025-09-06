@@ -77,7 +77,7 @@ export default function RawMaterialDetailPage({ params }) {
       }
 
       // Fetch updated reviews
-      const reviewsResponse = await fetch(`/api/rawmaterials/${id}/reviews`)
+      const reviewsResponse = await fetch(`/api/reviews/${id}`)
       if (reviewsResponse.ok) {
         const reviewsData = await reviewsResponse.json()
         console.log("Reviews response:", reviewsData); // Debug log
@@ -146,7 +146,7 @@ export default function RawMaterialDetailPage({ params }) {
       try {
         console.log('Fetching reviews for material:', id); // Debug log
         setIsLoadingReviews(true)
-        const response = await fetch(`/api/rawmaterials/${id}/reviews`)
+        const response = await fetch(`/api/reviews/${id}`)
         const data = await response.json()
 
         console.log('Reviews API response:', data); // Debug log
@@ -321,7 +321,7 @@ export default function RawMaterialDetailPage({ params }) {
     try {
       console.log('Submitting review:', { rating: reviewForm.rating, title: reviewForm.title, comment: reviewForm.comment }); // Debug log
 
-      const response = await fetch(`/api/rawmaterials/${id}/reviews`, {
+      const response = await fetch(`/api/reviews/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

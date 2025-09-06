@@ -81,11 +81,11 @@ export async function POST(request, { params }) {
 
     const newReview = new Review({
       userId: user._id,
-      userName: user.vendorName,
+      userName: user.name || user.vendorName || 'Anonymous User',
       rawMaterialId: id,
       rawMaterialName: rawMaterial.name,
-      supplierId: rawMaterial.createdBy._id,
-      supplierName: rawMaterial.createdBy.supplierName,
+      sellerId: rawMaterial.createdBy._id,
+      sellerName: rawMaterial.createdBy.name || rawMaterial.createdBy.vendorName || rawMaterial.createdBy.supplierName,
       rating: parseInt(rating),
       title: title ? title.trim() : '',
       comment: comment.trim()
@@ -152,7 +152,7 @@ export async function GET(request, { params }) {
       rawMaterialId: id, 
       isActive: true 
     })
-    .populate('userId', 'vendorName email profilePicture')
+    .populate('userId', 'name vendorName email profilePicture')
     .sort({ createdAt: -1 })
     .lean();
 
@@ -160,13 +160,13 @@ export async function GET(request, { params }) {
 
     const formattedReviews = reviews.map(review => ({
       _id: review._id,
-      userName: review.userName,
+      userName: review.userName || review.userId?.name || review.userId?.vendorName || 'Anonymous User',
       rating: review.rating,
       title: review.title,
       comment: review.comment,
       createdAt: review.createdAt,
       userId: review.userId?._id || review.userId,
-      supplierName: review.supplierName,
+      sellerName: review.sellerName,
       userProfilePicture: review.userId?.profilePicture || null
     }));
 
